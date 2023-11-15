@@ -5,7 +5,7 @@
 
 ## Agenda:
 * Introduction to Python
-* Intorduction to ChatGPT for learning Python
+* Introduction to ChatGPT for learning Python
 * Climate data analysis with Python Modifying and selecting variables using xarray 
 * Setting up a map with cartopy, plotting contour and filled contour
 * Plotting wind vector, overlaying with cartopy
