@@ -4,7 +4,8 @@
 ### Python Introduction  On 11:00-13:00, 16th November 2023:
 
 ## Agenda:
-* Introduction to Python 
+* Introduction to Python
+* Intorduction to ChatGPT for learning Python
 * Climate data analysis with Python Modifying and selecting variables using xarray 
 * Setting up a map with cartopy, plotting contour and filled contour
 * Plotting wind vector, overlaying with cartopy
