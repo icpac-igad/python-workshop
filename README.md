@@ -14,7 +14,7 @@
 
 * To login to the computer with Jupyter enabled
 ```
-ssh -N -f -L localhost:8888:localhost:8888 country@168.168.168.168
+ssh -NL 8888:localhost:8888 country@168.168.168.168
 ```
 
 * To get the workshop materials
