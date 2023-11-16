@@ -12,19 +12,20 @@
 
 ## Hands on
 
-* To login to the computer with Jupyter enabled
+* To login to the computer with Jupyter enabled, open the port with desired number 8888 in seperate terminal
 ```
 ssh -NL 8888:localhost:8888 country@168.168.168.168
 ```
 
-* To get the workshop materials
+* In another terminal, ssh into the machine by 
 ```
-git clone https://github.com/icpac-igad/python-workshop.git
+ssh -X country@168.168.168.168
 ```
 
 * To start Jupyter notebook
 ```
-micromamba activate python-basics
+git clone https://github.com/icpac-igad/python-workshop.git
+conda activate pycpt_env
 cd python-workshop
 jupyter notebook --no-browser --port=8888
 ```
