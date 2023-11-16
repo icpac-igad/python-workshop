@@ -10,5 +10,25 @@
 * Setting up a map with cartopy, plotting contour and filled contour
 * Plotting wind vector, overlaying with cartopy
 
+## Hands on
+
+* To login to the computer with Jupyter enabled
+```
+ssh -N -f -L localhost:8888:localhost:8888 country@168.168.168.168
+```
+
+* To get the workshop materials
+```
+git clone https://github.com/icpac-igad/python-workshop.git
+```
+
+* To start Jupyter notebook
+```
+micromamba activate python-basics
+cd python-workshop
+jupyter notebook --no-browser --port=8888
+```
+
+* To access the Jupyter notebook from your computer, in firefox/Chromium borwser, type ```http://localhost:8888```
 
 
