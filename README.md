@@ -1,5 +1,6 @@
-<h1 align="center">6<sup>th</sup> Foundational Climate Prediction Training Workshop for ICPAC Member States Forecasters ICPAC</h1>
-<h2 align="center">13<sup>th</sup> to 24<sup>th</sup> November 2023, ICPAC, Nairobi, Kenya</h2>
+<h1 align="center">6<sup>th</sup> SEWAA TRAINING ON EVALUATION OF THE CGAN and WRF Models ICPAC Headquarters, Ngong, Kenya
+22- 26 July 2024</h1>
+<h2 align="center">22<sup>nd</sup> to 26<sup>th</sup> July 2024, ICPAC, Nairobi, Kenya</h2>
 
 ### Python Introduction  On 11:00-13:00, 16th November 2023:
 
@@ -12,7 +13,7 @@
 
 ## Hands on
 
-* To login to the computer with Jupyter enabled, open the port with desired number 8888 in seperate terminal
+* To login to the computer with Jupyter enabled, open the port with desired number between 6000-8888 in seperate terminal
 ```
 ssh -NL 8888:localhost:8888 country@168.168.168.168
 ```
