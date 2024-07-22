@@ -13,6 +13,8 @@
 
 ## Hands on
 
+* The workshop dataset is stored in the google drive link [https://drive.google.com/file/d/1Dad7mUn4CLVRUjOtCZ1JBOm_Knwf_sCx/view](https://drive.google.com/file/d/1Dad7mUn4CLVRUjOtCZ1JBOm_Knwf_sCx/view)
+
 * To login to the computer with Jupyter enabled, open the port with desired number between 6000-8888 in seperate terminal
 ```
 ssh -NL 8888:localhost:8888 country@168.168.168.168
