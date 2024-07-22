@@ -1,4 +1,4 @@
-<h1 align="center">6<sup>th</sup> SEWAA TRAINING ON EVALUATION OF THE CGAN and WRF Models ICPAC Headquarters, Ngong, Kenya
+<h1 align="center">SEWAA TRAINING ON EVALUATION OF THE CGAN and WRF Models ICPAC Headquarters, Ngong, Kenya
 22- 26 July 2024</h1>
 <h2 align="center">22<sup>nd</sup> to 26<sup>th</sup> July 2024, ICPAC, Nairobi, Kenya</h2>
 
