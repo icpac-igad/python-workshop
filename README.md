@@ -2,7 +2,7 @@
 22- 26 July 2024</h1>
 <h2 align="center">22<sup>nd</sup> to 26<sup>th</sup> July 2024, ICPAC, Nairobi, Kenya</h2>
 
-### Python Introduction  On 11:00-13:00, 22nd November 2023:
+### Python Introduction  On 11:00-13:00, 22nd July 2024:
 
 ## Agenda:
 * Introduction to Python
