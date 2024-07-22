@@ -22,8 +22,8 @@ https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
 micromamba self-update
 micromamba activate base
-micromamba install python pip -c conda-forge
-micromamba install -c conda-forge xarray zarr 
+micromamba install python pip -c conda-forge 
+micromamba install -c conda-forge xarray zarr cartopy jupyterlab 
 
 ```
 
