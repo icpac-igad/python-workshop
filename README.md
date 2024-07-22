@@ -22,6 +22,17 @@ ssh -NL 8888:localhost:8888 country@168.168.168.168
 ```
 ssh -X country@168.168.168.168
 ```
+* to setup an python environment, micromamba is an options,  
+https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
+
+```
+"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+micromamba self-update
+micromamba activate base
+micromamba install python pip -c conda-forge
+micromamba install -c conda-forge xarray zarr 
+
+```
 
 * To start Jupyter notebook
 ```
