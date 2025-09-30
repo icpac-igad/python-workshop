@@ -26,6 +26,7 @@ micromamba install python pip -c conda-forge
 micromamba install -c conda-forge xarray zarr cartopy jupyterlab 
 
 ```
+* For windows, the manual methods of instllation using powershell would 
 
 * To start Jupyter lab notebook
 ```
