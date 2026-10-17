@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+out/
+*.ipynb_checkpoints/
+.env
+.env.*
+keys_state.json
+participants*.csv
+!participants.example.csv

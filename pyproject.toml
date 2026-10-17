@@ -1,0 +1,21 @@
+[project]
+name = "acmad2026-python-workshop"
+version = "0.1.0"
+description = "Hands-on Python data exploration with ARCO/Icechunk stores, xarray, xclim, and a coding agent"
+requires-python = ">=3.12"          # icechunk 2.x needs Python 3.12+ (uv fetches it, no sudo)
+dependencies = [
+  "icechunk>=2.2.2",                # 2.2.1 is yanked (GC deadlock)
+  "zarr>=3.2",
+  "xarray>=2025.1",
+  "dask",
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "boto3",
+  "xclim",
+  "cartopy",                        # optional map backdrop; remove if it fails to build
+  "jupyterlab",
+]
+
+[project.optional-dependencies]
+virtual = ["gribberish"]            # only for exercise 01 (decode GRIB through the virtual store)

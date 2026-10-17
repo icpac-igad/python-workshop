@@ -1,0 +1,19 @@
+# mamba / micromamba / conda alternative to uv:   mamba env create -f environment.yml
+name: httyc
+channels: [conda-forge]
+dependencies:
+  - python=3.12
+  - xarray
+  - zarr>=3.2
+  - dask
+  - numpy
+  - pandas
+  - matplotlib
+  - boto3
+  - xclim
+  - cartopy
+  - jupyterlab
+  - gh                 # GitHub CLI, installed per-user: no sudo
+  - pip
+  - pip:
+      - "icechunk>=2.2.2"
