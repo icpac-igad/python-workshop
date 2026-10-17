@@ -1,24 +1,35 @@
 # Workshop: Python data exploration with a coding agent
 
 Audience: beginners to Python, git and GitHub. You write and run the code; the participant reviews it.
+This folder is the participant's OWN repository (`origin` = their GitHub). The workshop repository at
+`~/python-workshop` holds solved examples for inspiration only.
 Data: ECMWF IFS ensemble forecasts as ARCO (analysis-ready, cloud-optimised) Icechunk stores on source.coop.
 
 ## How to behave
 - Be concise. Short answers; no long explanations unless asked. Do not repeat code you already showed.
-- `exercises/01..08_*.py` are the instructor's reference scripts: read and run them, but do NOT edit them.
-- Write the participant's own code to `my_scripts/eN_<short_name>.py` (N = exercise number), starting from the
-  matching reference script. Run it with `uv run python <file>`, fix errors, and show only the result.
-- Before writing, say in one line what you will change from the reference script (town, dates, threshold, plot).
+- `~/python-workshop/exercises/01..08_*.py` are solved examples. You may read and run them for inspiration, but
+  NEVER edit them, never copy them wholesale into this repository, and never commit or push in `~/python-workshop`.
+- Write the participant's own script in THIS repository, `scripts/eN_<short_name>.py` (N = exercise number), for
+  their question (town, dates, threshold, plot). Write it fresh, keep it short, and borrow only the parts needed.
+  Run it with `uv run python <file>`, fix errors, and show only the result.
+- Before writing, say in one line what the script will do and which example inspired it.
 - Explain what you did in one or two plain sentences, because the participant is learning.
 
 ## Git and GitHub (you drive these for the participant)
-- After each working step: `git status`, `git diff`, then `git add <specific files>` and `git commit -m "<what and why>"`.
-  Commit small and often. Write plain-English messages ("Add Nairobi rainfall plot"), never "update".
+- After each working step: `git status`, `git diff`, then `git add <specific files>` and commit. Commit small and often.
+- Every commit message is the participant's lab record: a title line ("Add Kisumu exceedance plot"), a blank line,
+  then a body with **Why** (the question), **Result** (key numbers), **Checked** (finite values, units, plausible
+  size, domain) and the example that inspired it. Use `git commit -m "<title>" -m "<body>"`. Never "update".
+- Show the message to the participant before committing, so they can correct it.
 - Push with `git push` when the participant asks. Never force-push, never reset --hard, never rewrite history.
 - Commit code and small text only. NEVER commit `out/`, `.venv/`, data files, `.env`, or anything large.
 - NEVER read, print, ask for, or write credentials: no tokens, no API keys, nothing under `~/.config/gh`, `~/.ssh`,
   `~/.claude`, and no `.env*` files. If a step seems to need a secret, stop and tell the participant to do it
   themselves in their own terminal. Do not run `env` or `printenv`.
+- The GitHub token was stored by the participant with `gh auth login`. You may run `gh auth status` and
+  `git remote -v` to explain the setup, but NEVER `gh auth token`, `--show-token`, `git credential`, or reading
+  `~/.config/gh` or `~/.git-credentials`. If a push fails on authentication, tell the participant to fix it in their
+  own terminal (GITHUB_SETUP.md).
 
 ## Python environment
 - The project uses uv and `pyproject.toml` (Python 3.12+, because Icechunk 2.x needs it). Run code with `uv run`.
@@ -46,10 +57,11 @@ Data: ECMWF IFS ensemble forecasts as ARCO (analysis-ready, cloud-optimised) Ice
   `e4drr-project/forecasts/ecmwf-ifs-ea-swio-realized-v3/<season>`, e.g. `49r1-jja2025`.
 - Observed extremes (CMORPH 1998-2024, East Africa, annual maxima and Gumbel return periods):
   `e4drr-project/observations/cmorph_rp_icechunk`. Latitude ASCENDS here (south to north), unlike the forecasts.
-- Reference scripts that run: `exercises/01_open_virtual_store.py`, `02_read_realized.py`, `03_pan_vs_pencil.py`,
+- Solved examples that run (in `~/python-workshop/exercises/`): `exercises/01_open_virtual_store.py`, `02_read_realized.py`, `03_pan_vs_pencil.py`,
   `04_cmorph_return_periods.py`, `05_xclim_heavy_rain.py`, `06_forecast_vs_local_extremes.py`,
   `07_review_before_push.py`, `08_exceedance_probability_map.py`.
-- Run `exercises/07_review_before_push.py` before every `git push`; do not push if it reports a problem.
+- Run `uv run python ~/python-workshop/exercises/07_review_before_push.py` before every `git push`; do not push if
+  it reports a problem.
 
 ## Chunking (pan vs pencil)
 - Both remote stores use "pan" chunks: one whole map per chunk. A map is 1 fetch; a point time series is one fetch

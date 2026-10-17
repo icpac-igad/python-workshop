@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 # Launch Claude Code against OpenRouter for the workshop. No Anthropic subscription needed.
-# Usage:  ./claude-workshop.sh            (asks for the key if OPENROUTER_API_KEY is unset)
-#         MODEL=qwen/qwen3-coder-next ./claude-workshop.sh
+# Run it from YOUR OWN repository; the workshop folder is added read-only, as inspiration (see GITHUB_SETUP.md).
+# Usage:  cd ~/acmad2026-python && ~/python-workshop/claude-workshop.sh
+#         MODEL=qwen/qwen3-coder-next ~/python-workshop/claude-workshop.sh
 set -euo pipefail
 
 command -v claude >/dev/null || { echo "Claude Code not found. Install it first (see workshop handout)."; exit 1; }
+
+# 0. Work happens in your own repository, never in the workshop folder.
+WORKSHOP="$(cd "$(dirname "$0")" && pwd)"
+if [ "$PWD" = "$WORKSHOP" ]; then
+  echo "You are inside the workshop folder. Start from your own repository: cd ~/acmad2026-python"; exit 1
+fi
+[ -f CLAUDE.md ] || echo "No CLAUDE.md here: copy the rules first (GITHUB_SETUP.md, step 3)."
 
 # 1. Key: env var, else hidden prompt. Never written to disk.
 if [ -z "${OPENROUTER_API_KEY:-}" ]; then
@@ -44,7 +52,6 @@ export CLAUDE_CODE_MAX_CONTEXT_TOKENS="${CLAUDE_CODE_MAX_CONTEXT_TOKENS:-120000}
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 export DISABLE_TELEMETRY=1
 
-cd "$(dirname "$0")"          # so Claude Code picks up the workshop CLAUDE.md
 echo
 echo "Tip: /cost is inaccurate for non-Anthropic models. Keep prompts short; use /clear between topics."
-exec claude "$@"
+exec claude --add-dir "$WORKSHOP" "$@"     # the agent may read the workshop examples

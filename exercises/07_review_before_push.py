@@ -42,7 +42,11 @@ for f in tracked:
 if SECRET.search(git("log", "-p", "--all")):
     problems.append("a key or token appears in an earlier commit: stop and ask the instructor, do not push")
 
-# 4. Work that is not committed yet.
+# 4. Push only to your own repository, never to the workshop one.
+if "icpac-igad/python-workshop" in git("remote", "-v"):
+    problems.append("this is the workshop repository: work and push in your own (GITHUB_SETUP.md)")
+
+# 5. Work that is not committed yet.
 status = git("status", "--porcelain").splitlines()
 unsaved = [s[3:] for s in status if s[3:].endswith(".py") or s[3:].endswith(".md")]
 
