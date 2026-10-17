@@ -14,27 +14,34 @@ You do not type Python in this session. Instead you direct a coding agent, [Clau
 
 The numbered scripts in `exercises/` are **working starting points**. For each exercise, you ask the agent to read the matching script and write **your own** version in `my_scripts/`, adapted to your town, date or question.
 
-## 1. Get the repository
+## 1. Download the workshop materials
+
+This repository is only the starting material. You do **not** commit or push to it.
 
 ```bash
-git clone -b 2026-10 --single-branch https://github.com/icpac-igad/python-workshop.git acmad2026-python
-cd acmad2026-python
+git clone -b 2026-10 --single-branch https://github.com/icpac-igad/python-workshop.git
+cd python-workshop
 ```
 
-## 2. Set up (E0, in your own terminal, not inside the agent)
+(No git yet? Download the ZIP of branch `2026-10` from GitHub and unzip it instead.)
+
+## 2. Create your own repository and set up (E0, in your own terminal, not inside the agent)
 
 ```bash
-./setup-nosudo.sh                   # installs uv, gh, claude and the Python environment; no sudo
-./setup-github.sh <github-username> # browser login, then creates github.com/<you>/acmad2026-python
+./setup-nosudo.sh --skip-env        # installs uv, gh and claude; no sudo
+./setup-github.sh <github-username> # browser login; creates ~/acmad2026-python and github.com/<you>/acmad2026-python
+cd ~/acmad2026-python               # from now on, work ONLY in this folder
+./setup-nosudo.sh                   # builds the Python environment here
 ./claude-workshop.sh                # asks for your OpenRouter key (hidden input) and starts Claude Code
 ```
 
+- `setup-github.sh` copies the workshop files into a **new** folder with a **fresh** git repository: no workshop
+  history, and its only remote (`origin`) is your own GitHub repository. Every commit and push goes there.
+  Choose another name with `./setup-github.sh <github-username> <repo-name>`.
+- After that, the downloaded `python-workshop` folder is no longer needed; you may delete it.
 - The GitHub login opens a browser page. You never paste a token anywhere.
 - Your personal OpenRouter key arrived by email. Type it only at the hidden prompt of `claude-workshop.sh`.
   **Never paste a key into the agent's chat, a script, or a commit.** Each key has a spending cap and will be switched off after the school.
-- After `setup-github.sh`, your repository has two remotes:
-  - `origin` is your own repository, where you push.
-  - `upstream` is this workshop repository. `git pull upstream 2026-10` fetches instructor updates.
 - Prefer conda? Run `mamba env create -f environment.yml`. Then run scripts with `python` instead of `uv run python`.
 
 ## 3. How every exercise works: ask, look, check and commit
@@ -119,7 +126,7 @@ exercises/01..08_*.py   reference scripts, one per stage; they run as they are
 my_scripts/             your own scripts, written by the agent (committed)
 out/                    figures and local caches (never committed)
 setup-nosudo.sh         installs uv, gh, Claude Code and the environment
-setup-github.sh         GitHub login and your own copy of this repository
+setup-github.sh         GitHub login; creates your own new repository from these files
 claude-workshop.sh      starts Claude Code with your OpenRouter key
 pyproject.toml, uv.lock the Python environment (uv); environment.yml for conda
 .claude/settings.json   safety rails: no force-push, reset --hard, env, or reading ~/.ssh and .env
