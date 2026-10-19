@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Launch Claude Code against OpenRouter for the workshop. No Anthropic subscription needed.
+# Launch Claude Code against OpenRouter for the workshop (through Ori when installed). No Anthropic subscription needed.
 # Run it from YOUR OWN repository; the workshop folder is added read-only, as inspiration (see GITHUB_SETUP.md).
 # Usage:  cd ~/ai-summer-school-2026 && ~/python-workshop/claude-workshop.sh
 #         MODEL=qwen/qwen3-coder-next ~/python-workshop/claude-workshop.sh
@@ -49,7 +49,23 @@ if [ -z "${MODEL:-}" ]; then
 fi
 echo "Using $MODEL"
 
-# 4. Point Claude Code at OpenRouter, keep every model slot on the chosen model.
+# Cost guards: compact earlier (shorter context = cheaper turns), no background traffic.
+export CLAUDE_CODE_MAX_CONTEXT_TOKENS="${CLAUDE_CODE_MAX_CONTEXT_TOKENS:-120000}"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export DISABLE_TELEMETRY=1
+echo
+echo "Tip: /cost is inaccurate for non-Anthropic models. Keep prompts short; use /clear between topics."
+
+# 4a. Preferred: OpenRouter's Ori launcher (https://openrouter.ai/docs/guides/ori/harness). It applies the
+#     OpenRouter model to Claude Code reliably; plain ANTHROPIC_* variables did not always route to it.
+#     ORI_FORCE_OPENROUTER_API_KEY makes Ori use this capped workshop key, not a browser sign-in.
+if command -v ori >/dev/null; then
+  export OPENROUTER_API_KEY ORI_FORCE_OPENROUTER_API_KEY=1
+  exec ori claude --model "$MODEL" --add-dir "$WORKSHOP" "$@"     # the agent may read the workshop examples
+fi
+
+# 4b. Fallback without Ori: point Claude Code at OpenRouter, keep every model slot on the chosen model.
+echo "(Ori not found: using plain Claude Code. Install it with: curl -fsSL https://openrouter.ai/labs/ori/install.sh | bash)"
 export ANTHROPIC_BASE_URL=https://openrouter.ai/api
 export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
 export ANTHROPIC_API_KEY=""
@@ -59,11 +75,4 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="$MODEL"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="$MODEL"
 export ANTHROPIC_SMALL_FAST_MODEL="$MODEL"
 export CLAUDE_CODE_SUBAGENT_MODEL="$MODEL"
-# Cost guards: compact earlier (shorter context = cheaper turns), no background traffic.
-export CLAUDE_CODE_MAX_CONTEXT_TOKENS="${CLAUDE_CODE_MAX_CONTEXT_TOKENS:-120000}"
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
-export DISABLE_TELEMETRY=1
-
-echo
-echo "Tip: /cost is inaccurate for non-Anthropic models. Keep prompts short; use /clear between topics."
-exec claude --add-dir "$WORKSHOP" "$@"     # the agent may read the workshop examples
+exec claude --model "$MODEL" --add-dir "$WORKSHOP" "$@"

@@ -10,7 +10,7 @@
       "Bash(git push --force*)", "Bash(git push -f*)", "Bash(git reset --hard*)", "Bash(git clean*)",
       "Bash(gh auth token*)", "Bash(gh auth status --show-token*)", "Bash(gh auth refresh*)", "Bash(git credential*)",
       "Bash(env*)", "Bash(printenv*)", "Bash(curl*)", "Bash(wget*)",
-      "Read(~/.config/gh/**)", "Read(~/.ssh/**)", "Read(~/.git-credentials)", "Read(~/.claude/**)", "Read(**/.env*)", "Read(~/.env*)",
+      "Read(~/.config/gh/**)", "Read(~/.ssh/**)", "Read(~/.git-credentials)", "Read(~/.claude/**)", "Read(~/.ori/**)", "Read(**/.env*)", "Read(~/.env*)",
       "Edit(~/.config/gh/**)", "Edit(~/.ssh/**)",
       "Edit(~/python-workshop/**)", "Write(~/python-workshop/**)"
     ]
