@@ -91,8 +91,9 @@ If `git push` asks for a username and password, `gh auth setup-git` did not run.
 
 ```bash
 cd ~/ai-summer-school-2026
-~/python-workshop/claude-workshop.sh       # reads your OpenRouter key from ~/.env, starts Claude Code here,
-                                           # and lets it READ ~/python-workshop for inspiration
+set -a; source ~/.env; set +a              # your OpenRouter key and model, from the welcome email
+ori claude --model deepseek/deepseek-v4-pro --add-dir ~/python-workshop
+                                           # Claude Code starts here and may READ ~/python-workshop for inspiration
 ```
 
 Ask the agent to explain the setup to you and check it. **The agent never sees the token**: the project rules

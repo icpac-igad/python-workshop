@@ -29,6 +29,9 @@ git clone -b 2026-10 --single-branch https://github.com/icpac-igad/python-worksh
 ~/python-workshop/setup-nosudo.sh --skip-env      # installs uv, gh and claude; no sudo
 ```
 
+Claude Code, Ori and `~/.env` were set up from the welcome email. If not, see the email, or install Ori with
+`curl -fsSL https://openrouter.ai/labs/ori/install.sh | bash` once `~/.local/bin` is on your `PATH`.
+
 You never commit or push to `~/python-workshop`.
 
 ## 2. Create your own repository (E0)
@@ -39,17 +42,24 @@ Follow **[GITHUB_SETUP.md](GITHUB_SETUP.md)**. It covers:
 - creating a **fine-grained token** limited to that one repository, and storing it with `gh auth login` in your own terminal;
 - cloning your repository, copying in only the agent rules and environment files, and making your first commit and push.
 
-Then start the agent **from your repository**:
+Then start the agent **from your repository**, never from `~/python-workshop`:
 
 ```bash
 cd ~/ai-summer-school-2026
-~/python-workshop/claude-workshop.sh     # reads your key from ~/.env; the agent can read the examples
+set -a; source ~/.env; set +a                    # your key and model, set up from the welcome email
+ori claude --model deepseek/deepseek-v4-pro --add-dir ~/python-workshop
 ```
 
-- Your personal OpenRouter key arrived by email, with the lines to put in `~/.env`
-  (a private file in your home folder, outside every repository). Without that file, the launcher asks for the key at a hidden prompt.
+- `ori` is OpenRouter's launcher ([Ori harness](https://openrouter.ai/docs/guides/ori/harness)). It runs Claude Code on
+  the chosen OpenRouter model with your workshop key, so you need no Claude subscription.
+- `--add-dir ~/python-workshop` lets the agent **read** the examples. The project rules forbid it to edit them.
+- In the agent, `/status` must show `deepseek/deepseek-v4-pro`. A cheaper model for short tasks is
+  `--model qwen/qwen3-coder-next`.
+- Your personal OpenRouter key arrived by email, with the 3 lines for `~/.env`: a private file (`chmod 600`) in your
+  home folder, outside every repository.
 - **Never paste a key or token into the agent's chat, a script, or a commit.**
-- Each OpenRouter key carries a small workshop credit and is switched off after the school. Your GitHub token expires on 31 October.
+- Each OpenRouter key carries a small workshop credit and is switched off after the school. Your GitHub token
+  expires on 31 October. Keep prompts short, and use `/clear` between topics.
 
 ## 3. How every exercise works: ask, look, check and commit
 
@@ -137,7 +147,6 @@ Both stores use *pan* chunks, with one whole map per chunk. Maps are cheap to re
   pyproject.toml, uv.lock Python environment (copy into your repository); environment.yml for conda
   GITHUB_SETUP.md         your own repository and token, step by step
   setup-nosudo.sh         installs uv, gh and Claude Code
-  claude-workshop.sh      starts Claude Code in your repository with your OpenRouter key (~/.env)
 
 ~/ai-summer-school-2026/ (your repository: origin = github.com/<you>/ai-summer-school-2026)
   scripts/eN_*.py         your own scripts, written by the agent (committed)
