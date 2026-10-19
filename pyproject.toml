@@ -1,5 +1,5 @@
 [project]
-name = "acmad2026-python-workshop"
+name = "ai-summer-school-2026-workshop"
 version = "0.1.0"
 description = "Hands-on Python data exploration with ARCO/Icechunk stores, xarray, xclim, and a coding agent"
 requires-python = ">=3.12"          # icechunk 2.x needs Python 3.12+ (uv fetches it, no sudo)

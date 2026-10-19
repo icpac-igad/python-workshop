@@ -1,6 +1,10 @@
 # Hands-on Python data exploration with a coding agent
 
-**ACMAD summer school 2026 · Day 2 · 20 October 2026 · branch `2026-10`**
+**African Summer School on Artificial Intelligence for Weather and Climate Modelling 2026**\
+*Theme: Introduction in Artificial Intelligence for Climate Modelling*\
+19–23 October 2026 · AIMS, Kigali, Rwanda · Day 2, 20 October 2026 · branch `2026-10`
+
+Session by Nishadh Kalladath, IGAD Climate Prediction and Applications Centre (ICPAC).
 
 In this session you load, inspect, explore and visualise real weather and climate data from the cloud:
 - ECMWF ensemble forecasts (51 members, East Africa)
@@ -31,14 +35,14 @@ You never commit or push to `~/python-workshop`.
 
 Follow **[GITHUB_SETUP.md](GITHUB_SETUP.md)**. It covers:
 - the basic ideas of git and GitHub;
-- creating an empty repository `acmad2026-python` on github.com;
+- creating an empty repository `ai-summer-school-2026` on github.com;
 - creating a **fine-grained token** limited to that one repository, and storing it with `gh auth login` in your own terminal;
 - cloning your repository, copying in only the agent rules and environment files, and making your first commit and push.
 
 Then start the agent **from your repository**:
 
 ```bash
-cd ~/acmad2026-python
+cd ~/ai-summer-school-2026
 ~/python-workshop/claude-workshop.sh     # asks for your OpenRouter key (hidden input); the agent can read the examples
 ```
 
@@ -134,7 +138,7 @@ Both stores use *pan* chunks, with one whole map per chunk. Maps are cheap to re
   setup-nosudo.sh         installs uv, gh and Claude Code
   claude-workshop.sh      starts Claude Code in your repository with your OpenRouter key
 
-~/acmad2026-python/ (your repository: origin = github.com/<you>/acmad2026-python)
+~/ai-summer-school-2026/ (your repository: origin = github.com/<you>/ai-summer-school-2026)
   scripts/eN_*.py         your own scripts, written by the agent (committed)
   NOTES.md                your notes (committed)
   out/                    figures and caches (never committed)

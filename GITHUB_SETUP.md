@@ -1,5 +1,8 @@
 # Your own GitHub repository: a personal record of your scripts
 
+*African Summer School on Artificial Intelligence for Weather and Climate Modelling 2026 · Theme: Introduction in
+Artificial Intelligence for Climate Modelling · 19–23 October 2026 · AIMS, Kigali, Rwanda*
+
 In this session, GitHub is your **lab notebook**. Every script you and the coding agent write is saved as a
 *commit* with a message that says what changed and why. Each commit is then *pushed* to your own repository
 on GitHub.
@@ -18,8 +21,8 @@ and your agent read for inspiration. You never commit or push to it.
 | **token** | A password-like key that lets git on your computer push to your GitHub repository, and nothing more. |
 
 ```
-your computer                                    github.com/<you>/acmad2026-python
-~/acmad2026-python  --git commit-->  history  --git push (uses token)-->  backup, sharing, record
+your computer                                    github.com/<you>/ai-summer-school-2026
+~/ai-summer-school-2026  --git commit-->  history  --git push (uses token)-->  backup, sharing, record
 ~/python-workshop   (read-only examples, inspiration only)
 ```
 
@@ -29,14 +32,14 @@ your computer                                    github.com/<you>/acmad2026-pyth
 2. **Private email for commits.** Go to *Settings → Emails* and tick **Keep my email addresses private**.
    Copy the address shown, which looks like `12345678+you@users.noreply.github.com`. You need it in step 3.
 3. **Create your empty repository.** Click *+ → New repository* and fill it in as follows:
-   - Name: `acmad2026-python`
+   - Name: `ai-summer-school-2026`
    - Visibility: Public (or Private)
    - Do **not** add a README, .gitignore or licence. The repository must start empty.
 4. **Create a fine-grained token** at *Settings → Developer settings → Personal access tokens →
    Fine-grained tokens → Generate new token* (<https://github.com/settings/personal-access-tokens/new>):
-   - **Token name:** `acmad2026-laptop`
+   - **Token name:** `ai-summer-school-2026-laptop`
    - **Expiration:** custom, `2026-10-31`. A short life limits the damage if it leaks.
-   - **Repository access:** *Only select repositories* → `acmad2026-python`
+   - **Repository access:** *Only select repositories* → `ai-summer-school-2026`
    - **Permissions → Repository permissions → Contents:** *Read and write*. GitHub adds *Metadata: Read-only*
      automatically. Leave everything else at *No access*.
    - Click **Generate token** and copy it (`github_pat_...`). GitHub shows it **only once**.
@@ -69,25 +72,25 @@ Do not copy the exercises: your agent writes your own scripts.
 
 ```bash
 cd ~
-git clone https://github.com/<you>/acmad2026-python.git      # "You appear to have cloned an empty repository" is fine
-cd acmad2026-python
+git clone https://github.com/<you>/ai-summer-school-2026.git      # "You appear to have cloned an empty repository" is fine
+cd ai-summer-school-2026
 cp ~/python-workshop/{CLAUDE.md,pyproject.toml,uv.lock,.gitignore} .
 mkdir -p .claude scripts && cp ~/python-workshop/.claude/settings.json .claude/
 uv sync --extra virtual                                      # the Python environment for your repository
 git add -A
-git commit -m "Start my ACMAD 2026 workshop repository" \
+git commit -m "Start my AI Summer School 2026 workshop repository" \
            -m "Agent rules (CLAUDE.md), the Python environment (pyproject.toml, uv.lock) and what git must ignore."
 git push -u origin main                                      # first push: proves the token works
 ```
 
-Open `https://github.com/<you>/acmad2026-python`. Your first commit should be there.
+Open `https://github.com/<you>/ai-summer-school-2026`. Your first commit should be there.
 
 If `git push` asks for a username and password, `gh auth setup-git` did not run. Run it, then push again.
 
 ## 4. Start the agent from your repository, then ask it to explain and check
 
 ```bash
-cd ~/acmad2026-python
+cd ~/ai-summer-school-2026
 ~/python-workshop/claude-workshop.sh       # asks for your OpenRouter key (hidden), starts Claude Code here,
                                            # and lets it READ ~/python-workshop for inspiration
 ```

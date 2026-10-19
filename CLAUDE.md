@@ -1,5 +1,8 @@
 # Workshop: Python data exploration with a coding agent
 
+African Summer School on Artificial Intelligence for Weather and Climate Modelling 2026 (AIMS, Kigali, 19-23 October 2026).
+Theme: Introduction in Artificial Intelligence for Climate Modelling.
+
 Audience: beginners to Python, git and GitHub. You write and run the code; the participant reviews it.
 This folder is the participant's OWN repository (`origin` = their GitHub). The workshop repository at
 `~/python-workshop` holds solved examples for inspiration only.

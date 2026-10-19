@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Launch Claude Code against OpenRouter for the workshop. No Anthropic subscription needed.
 # Run it from YOUR OWN repository; the workshop folder is added read-only, as inspiration (see GITHUB_SETUP.md).
-# Usage:  cd ~/acmad2026-python && ~/python-workshop/claude-workshop.sh
+# Usage:  cd ~/ai-summer-school-2026 && ~/python-workshop/claude-workshop.sh
 #         MODEL=qwen/qwen3-coder-next ~/python-workshop/claude-workshop.sh
 set -euo pipefail
 
@@ -10,7 +10,7 @@ command -v claude >/dev/null || { echo "Claude Code not found. Install it first 
 # 0. Work happens in your own repository, never in the workshop folder.
 WORKSHOP="$(cd "$(dirname "$0")" && pwd)"
 if [ "$PWD" = "$WORKSHOP" ]; then
-  echo "You are inside the workshop folder. Start from your own repository: cd ~/acmad2026-python"; exit 1
+  echo "You are inside the workshop folder. Start from your own repository: cd ~/ai-summer-school-2026"; exit 1
 fi
 [ -f CLAUDE.md ] || echo "No CLAUDE.md here: copy the rules first (GITHUB_SETUP.md, step 3)."
 

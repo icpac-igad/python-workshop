@@ -11,7 +11,7 @@ resolution-markers = [
 ]
 
 [[package]]
-name = "acmad2026-python-workshop"
+name = "ai-summer-school-2026-workshop"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
