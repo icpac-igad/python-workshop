@@ -14,13 +14,14 @@ if [ "$PWD" = "$WORKSHOP" ]; then
 fi
 [ -f CLAUDE.md ] || echo "No CLAUDE.md here: copy the rules first (GITHUB_SETUP.md, step 3)."
 
-# 1. Key: env var, else ~/.env.openrouter (made from the welcome email), else hidden prompt.
+# 1. Key: env var, else ~/.env (the Claude Code + OpenRouter file from the welcome email), else hidden prompt.
 #    The file lives outside every repository; the agent's rules deny reading .env* files.
-ENV_FILE="$HOME/.env.openrouter"
-if [ -z "${OPENROUTER_API_KEY:-}" ] && [ -f "$ENV_FILE" ]; then
-  [ -n "$(find "$ENV_FILE" -perm /077)" ] && chmod 600 "$ENV_FILE"
-  OPENROUTER_API_KEY=$(sed -n 's/^[[:space:]]*OPENROUTER_API_KEY=//p' "$ENV_FILE" | head -1 | tr -d "\"' \r")
-fi
+for ENV_FILE in "$HOME/.env" "$HOME/.env.openrouter"; do
+  if [ -z "${OPENROUTER_API_KEY:-}" ] && [ -f "$ENV_FILE" ]; then
+    [ -n "$(find "$ENV_FILE" -perm /077)" ] && chmod 600 "$ENV_FILE"
+    OPENROUTER_API_KEY=$(sed -nE 's/^[[:space:]]*(export[[:space:]]+)?OPENROUTER_API_KEY=//p' "$ENV_FILE" | head -1 | tr -d "\"' \r")
+  fi
+done
 if [ -z "${OPENROUTER_API_KEY:-}" ]; then
   read -rsp "Paste the workshop OpenRouter key: " OPENROUTER_API_KEY; echo
 fi
