@@ -14,7 +14,13 @@ if [ "$PWD" = "$WORKSHOP" ]; then
 fi
 [ -f CLAUDE.md ] || echo "No CLAUDE.md here: copy the rules first (GITHUB_SETUP.md, step 3)."
 
-# 1. Key: env var, else hidden prompt. Never written to disk.
+# 1. Key: env var, else ~/.env.openrouter (made from the welcome email), else hidden prompt.
+#    The file lives outside every repository; the agent's rules deny reading .env* files.
+ENV_FILE="$HOME/.env.openrouter"
+if [ -z "${OPENROUTER_API_KEY:-}" ] && [ -f "$ENV_FILE" ]; then
+  [ -n "$(find "$ENV_FILE" -perm /077)" ] && chmod 600 "$ENV_FILE"
+  OPENROUTER_API_KEY=$(sed -n 's/^[[:space:]]*OPENROUTER_API_KEY=//p' "$ENV_FILE" | head -1 | tr -d "\"' \r")
+fi
 if [ -z "${OPENROUTER_API_KEY:-}" ]; then
   read -rsp "Paste the workshop OpenRouter key: " OPENROUTER_API_KEY; echo
 fi
@@ -24,7 +30,11 @@ info=$(curl -s -m 15 https://openrouter.ai/api/v1/auth/key -H "Authorization: Be
 if ! echo "$info" | grep -q '"data"'; then echo "Key rejected or OpenRouter unreachable."; exit 1; fi
 echo "$info" | python3 -c 'import sys,json
 d=json.load(sys.stdin)["data"]
-print("Key OK. Limit: $"+str(d.get("limit"))+"  remaining: $"+str(d.get("limit_remaining"))+"  expires: "+str(d.get("expires_at")))' 2>/dev/null || echo "Key OK."
+lim, rem = d.get("limit"), d.get("limit_remaining")
+share = rem / lim if lim and rem is not None else 1
+credit = ("plenty left" if share >= 0.5 else "running low: keep prompts short, /clear between topics"
+          if share >= 0.15 else "almost used up: tell the instructor")
+print("Key OK. Workshop credit: " + credit + ". Valid until: " + (str(d["expires_at"])[:10] if d.get("expires_at") else "the end of the school"))' 2>/dev/null || echo "Key OK."
 
 # 3. Model choice (tested with Claude Code tool use). Override with MODEL=...
 if [ -z "${MODEL:-}" ]; then

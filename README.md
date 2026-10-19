@@ -43,12 +43,13 @@ Then start the agent **from your repository**:
 
 ```bash
 cd ~/ai-summer-school-2026
-~/python-workshop/claude-workshop.sh     # asks for your OpenRouter key (hidden input); the agent can read the examples
+~/python-workshop/claude-workshop.sh     # reads your key from ~/.env.openrouter; the agent can read the examples
 ```
 
-- Your personal OpenRouter key arrived by email. Type it only at the hidden prompt.
+- Your personal OpenRouter key arrived by email, with the one command that saves it to `~/.env.openrouter`
+  (a private file outside every repository). Without that file, the launcher asks for the key at a hidden prompt.
 - **Never paste a key or token into the agent's chat, a script, or a commit.**
-- OpenRouter keys are capped and switched off after the school. Your GitHub token expires on 31 October.
+- Each OpenRouter key carries a small workshop credit and is switched off after the school. Your GitHub token expires on 31 October.
 
 ## 3. How every exercise works: ask, look, check and commit
 
@@ -136,7 +137,7 @@ Both stores use *pan* chunks, with one whole map per chunk. Maps are cheap to re
   pyproject.toml, uv.lock Python environment (copy into your repository); environment.yml for conda
   GITHUB_SETUP.md         your own repository and token, step by step
   setup-nosudo.sh         installs uv, gh and Claude Code
-  claude-workshop.sh      starts Claude Code in your repository with your OpenRouter key
+  claude-workshop.sh      starts Claude Code in your repository with your OpenRouter key (~/.env.openrouter)
 
 ~/ai-summer-school-2026/ (your repository: origin = github.com/<you>/ai-summer-school-2026)
   scripts/eN_*.py         your own scripts, written by the agent (committed)

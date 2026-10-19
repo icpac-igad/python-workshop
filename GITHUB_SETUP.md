@@ -91,7 +91,7 @@ If `git push` asks for a username and password, `gh auth setup-git` did not run.
 
 ```bash
 cd ~/ai-summer-school-2026
-~/python-workshop/claude-workshop.sh       # asks for your OpenRouter key (hidden), starts Claude Code here,
+~/python-workshop/claude-workshop.sh       # reads your OpenRouter key from ~/.env.openrouter, starts Claude Code here,
                                            # and lets it READ ~/python-workshop for inspiration
 ```
 
