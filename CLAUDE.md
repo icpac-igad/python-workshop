@@ -27,6 +27,10 @@ Data: ECMWF IFS ensemble forecasts as ARCO (analysis-ready, cloud-optimised) Ice
   them into notebooks with `uv run jupytext --set-formats ipynb,py:percent <file>` without you.
 - Commit the `.py` script, never the `.ipynb` (it is in `.gitignore`).
 - Do not run a script twice to "double-check"; one run plus a check of its printed numbers is enough.
+- For a point time series, read only daily lead times (`step` = 0, 24, ..., 240 h) unless the participant asks
+  for more: each lead time is one remote fetch, and all 65 can take many minutes.
+- Run scripts with a 3-minute timeout. If a run is moved to the background or takes longer, do NOT poll it with
+  `sleep`/`cat` loops (every check costs credit). Stop it, select less data, and say so in one line.
 
 ## Git and GitHub (you drive these for the participant)
 - After each working step: `git status`, `git diff`, then `git add <specific files>` and commit. Commit small and often.

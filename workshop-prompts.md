@@ -20,7 +20,7 @@ Replace `<town>`, `<lat>`, `<lon>` with your own (the examples use Kisumu, -0.09
 6. **Do git yourself when you can.** `git status`, `git log`, `git switch`, `git revert` and `git tag` cost nothing in
    your own terminal. Use the agent for the parts that need thought: the code and the commit message.
 
-In the agent, `/status` shows the model (it must be `deepseek/deepseek-v4-pro`).
+In the agent, `/status` shows the model (it must be `qwen/qwen3-coder-next`).
 
 ---
 
@@ -42,7 +42,7 @@ Start the agent **from your own repository**:
 ```bash
 cd ~/ai-summer-school-2026
 set -a; source ~/.env; set +a
-ori claude --model deepseek/deepseek-v4-pro --add-dir ~/python-workshop
+ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
 ```
 
 ## Step 1 · E0 Orientation
@@ -68,7 +68,7 @@ Check: the mean value is plausible for the region. `/clear`
 ## Step 4 · E2 Inspect: the rainfall plume at your town
 
 > Read ~/python-workshop/exercises/02_read_realized.py. Write scripts/e2_`<town>`_plume.py for `<town>` (`<lat>`,
-> `<lon>`), with `# %%` cell markers. Run it. In 3 lines: the dimensions, the latitude order, and the largest
+> `<lon>`), with `# %%` cell markers, reading only daily lead times (0 to 240 h). Run it. In 3 lines: the dimensions, the latitude order, and the largest
 > 10-day total. Then commit with a detailed message.
 
 Check: the cumulative curves never go down, and the spread grows with lead time. Look at `out/` yourself. `/clear`
@@ -180,9 +180,19 @@ On GitHub, *Tags* now lists a citable version of your work.
 
 ## What it costs
 
-These figures come from running the prompts above, each in a fresh conversation, with `deepseek/deepseek-v4-pro`.
-They are shown as a share of your credit. The table is filled in from the admin cost test.
+Measured on 20 October 2026 by running the prompts above, each in a fresh conversation, for Kisumu. Figures are a
+share of your credit. Where two steps share a row, the cost of the first showed up together with the second.
 
-| Step | Share of your credit | Agent turns |
+| Step | `qwen/qwen3-coder-next` | Agent turns |
 |---|---|---|
-| *to be measured* | | |
+| 1-2 E0 orientation, first commit | about 1% | 3 + 5 |
+| 3 E1 virtual store | under 1% | 2 |
+| 4 E2 plume | about 3% | 22 (slow data read, about 9 min) |
+| 5-6 E3 chunks, E4 extremes | about 4% | 2 + 14 |
+| 7 E5 heavy days | about 1% | 9 |
+| 8 E6 exceedance | about 2% | 7 |
+| 9 E7 review and push, 14 E8 stretch | about 1% | 5 + 6 |
+| **Whole workshop (steps 1-9 and 14)** | **about 12%** | |
+
+With `deepseek/deepseek-v4-pro`, steps 1-4 alone used about 80% of the credit, mostly because its requests are
+spread over many providers and so are rarely cached. Use Qwen3 Coder Next unless the instructor says otherwise.

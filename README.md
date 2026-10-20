@@ -47,14 +47,14 @@ Then start the agent **from your repository**, never from `~/python-workshop`:
 ```bash
 cd ~/ai-summer-school-2026
 set -a; source ~/.env; set +a                    # your key and model, set up from the welcome email
-ori claude --model deepseek/deepseek-v4-pro --add-dir ~/python-workshop
+ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
 ```
 
 - `ori` is OpenRouter's launcher ([Ori harness](https://openrouter.ai/docs/guides/ori/harness)). It runs Claude Code on
   the chosen OpenRouter model with your workshop key, so you need no Claude subscription.
 - `--add-dir ~/python-workshop` lets the agent **read** the examples. The project rules forbid it to edit them.
-- In the agent, `/status` must show `deepseek/deepseek-v4-pro`. A cheaper model for short tasks is
-  `--model qwen/qwen3-coder-next`.
+- In the agent, `/status` must show `qwen/qwen3-coder-next`. In a cost test, the whole workshop used about 12% of
+  a participant's credit with it, against about 80% for steps 1-4 alone with `deepseek/deepseek-v4-pro`.
 - Your personal OpenRouter key arrived by email, with the 3 lines for `~/.env`: a private file (`chmod 600`) in your
   home folder, outside every repository.
 - **Never paste a key or token into the agent's chat, a script, or a commit.**

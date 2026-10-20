@@ -92,7 +92,7 @@ If `git push` asks for a username and password, `gh auth setup-git` did not run.
 ```bash
 cd ~/ai-summer-school-2026
 set -a; source ~/.env; set +a              # your OpenRouter key and model, from the welcome email
-ori claude --model deepseek/deepseek-v4-pro --add-dir ~/python-workshop
+ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
                                            # Claude Code starts here and may READ ~/python-workshop for inspiration
 ```
 
