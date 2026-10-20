@@ -15,6 +15,7 @@ dependencies = [
   "xclim",
   "cartopy",                        # optional map backdrop; remove if it fails to build
   "jupyterlab",
+  "jupytext",                       # script <-> notebook, no agent needed
 ]
 
 [project.optional-dependencies]

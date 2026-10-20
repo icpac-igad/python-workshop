@@ -18,6 +18,16 @@ Data: ECMWF IFS ensemble forecasts as ARCO (analysis-ready, cloud-optimised) Ice
 - Before writing, say in one line what the script will do and which example inspired it.
 - Explain what you did in one or two plain sentences, because the participant is learning.
 
+## Cost (each participant has a small, capped credit)
+- Keep answers short; when the participant asks for "3 lines" or "only the numbers", give exactly that.
+- Open only the files the participant names. Do not explore the repository or `~/python-workshop` on your own.
+- NEVER read `.ipynb` notebooks or images (`out/*.png`): their encoded outputs are large and expensive. Ask the
+  participant to describe the plot instead. Print small numeric summaries from the script instead of looking.
+- Write scripts with `# %%` cell markers at each step (open, select, compute, plot), so the participant can turn
+  them into notebooks with `uv run jupytext --set-formats ipynb,py:percent <file>` without you.
+- Commit the `.py` script, never the `.ipynb` (it is in `.gitignore`).
+- Do not run a script twice to "double-check"; one run plus a check of its printed numbers is enough.
+
 ## Git and GitHub (you drive these for the participant)
 - After each working step: `git status`, `git diff`, then `git add <specific files>` and commit. Commit small and often.
 - Every commit message is the participant's lab record: a title line ("Add Kisumu exceedance plot"), a blank line,

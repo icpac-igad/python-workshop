@@ -82,6 +82,31 @@ The agent follows the project rules in [`CLAUDE.md`](CLAUDE.md), which you copie
 - Never commit `out/` or data.
 - Never edit, copy wholesale or push the workshop examples.
 
+### Cost: the six habits
+
+Your key carries a small credit. **[workshop-prompts.md](workshop-prompts.md)** gives every step's prompt in order,
+written to be cheap:
+1. `/clear` before each new step.
+2. Name the file you mean.
+3. Ask for "3 lines" or "only the numbers".
+4. Never let the agent read notebooks or images.
+5. Run the example before asking about it.
+6. Type the plain git commands (`status`, `log`, `switch`, `revert`, `tag`) yourself.
+
+### Explore a script as a notebook (no agent, no credit)
+
+Your scripts are written with `# %%` cell markers, so jupytext turns them into notebooks:
+
+```bash
+uv run python -m ipykernel install --user --name ai-school-2026 --display-name "AI school 2026"   # once
+uv run jupytext --set-formats ipynb,py:percent scripts/e6_<town>_exceedance.py                   # pair .py and .ipynb
+# explore in JupyterLab with the "AI school 2026" kernel, then copy your changes back into the script:
+uv run jupytext --sync scripts/e6_<town>_exceedance.ipynb
+```
+
+Commit the `.py`, not the `.ipynb`: notebooks are in `.gitignore`, because their outputs bloat diffs and history.
+Never ask the agent to read a notebook or a plot image. Look yourself, and tell it what you see.
+
 ## 4. Exercises
 
 | Stage | Clock (min) | Example for inspiration | What you ask the agent to build in your repository |
@@ -146,6 +171,7 @@ Both stores use *pan* chunks, with one whole map per chunk. Maps are cheap to re
   .claude/settings.json   safety rails: no force-push, reset --hard, env, tokens; examples cannot be edited
   pyproject.toml, uv.lock Python environment (copy into your repository); environment.yml for conda
   GITHUB_SETUP.md         your own repository and token, step by step
+  workshop-prompts.md     every step's prompt in order, written to keep the cost low
   setup-nosudo.sh         installs uv, gh and Claude Code
 
 ~/ai-summer-school-2026/ (your repository: origin = github.com/<you>/ai-summer-school-2026)

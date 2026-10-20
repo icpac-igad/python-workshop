@@ -7,3 +7,6 @@ out/
 keys_state.json
 participants*.csv
 !participants.example.csv
+
+# Notebooks: commit the paired .py script, not the .ipynb (outputs bloat diffs and history)
+*.ipynb

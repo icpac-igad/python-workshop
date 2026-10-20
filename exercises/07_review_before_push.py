@@ -9,7 +9,7 @@ import re
 import subprocess
 import sys
 
-BLOCKED = re.compile(r"(^|/)(out|\.venv|__pycache__)/|(^|/)\.env|\.(nc|grib2?|h5|tif|csv)$|\.zarr(/|$)|(^|/)keys")
+BLOCKED = re.compile(r"(^|/)(out|\.venv|__pycache__)/|(^|/)\.env|\.(nc|grib2?|h5|tif|csv|ipynb)$|\.zarr(/|$)|(^|/)keys")
 # Shapes of common secrets (OpenRouter, Anthropic, GitHub, AWS). Matched, never printed.
 SECRET = re.compile(r"sk-or-v1-[0-9a-f]{20,}|sk-ant-[\w-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}")
 MAX_KB = 1000
