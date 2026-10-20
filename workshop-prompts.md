@@ -3,7 +3,7 @@
 *African Summer School on Artificial Intelligence for Weather and Climate Modelling 2026 · Day 2, 20 October 2026*
 
 Your OpenRouter key carries a **small workshop credit**. The steps below fit inside it with plenty to spare, *if*
-you follow the six habits. Steps marked **(no agent)** cost nothing: you type them in your own terminal.
+you follow the six habits. Tasks marked **(no agent)** cost nothing: you type them in your own terminal.
 
 Replace `<town>`, `<lat>`, `<lon>` with your own (the examples use Kisumu, -0.09, 34.77).
 
@@ -24,20 +24,11 @@ In the agent, `/status` shows the model (it must be `qwen/qwen3-coder-next`).
 
 ---
 
-## Step 0 · Environment (no agent)
+## Before the tasks: README steps 1-7
 
-From the welcome email: JupyterHub account, Claude Code, Ori and `~/.env`. Then:
-
-```bash
-cd ~
-git clone -b 2026-10 --single-branch https://github.com/icpac-igad/python-workshop.git
-~/python-workshop/setup-nosudo.sh --skip-env          # uv and gh, no sudo
-```
-
-Then follow [GITHUB_SETUP.md](GITHUB_SETUP.md): your empty repository `ai-summer-school-2026`, a fine-grained token,
-`gh auth login`, clone, copy the rules and environment files, `uv sync --extra virtual`, first commit and push.
-
-Start the agent **from your own repository**:
+Do steps 1-7 of the [README](README.md) first: JupyterHub account, Claude Code and Ori, `~/.env`, **step 4 (start
+Claude Code with Ori: the workshop starts there)**, the workshop examples, your own repository and token. Then
+start the agent from your repository:
 
 ```bash
 cd ~/ai-summer-school-2026
@@ -45,27 +36,27 @@ set -a; source ~/.env; set +a
 ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
 ```
 
-## Step 1 · E0 Orientation
+## Task 1 · E0 Orientation
 
 > Read CLAUDE.md. List the files in ~/python-workshop/exercises with the first docstring line of each. Then, in 5
 > bullets: what is here, and what you must never do.
 
 Check: the agent names the read-only rule and the secret rules. `/clear`
 
-## Step 2 · E0 First commit by the agent
+## Task 2 · E0 First commit by the agent
 
 > Create NOTES.md with my name `<name>` and home town `<town>` (`<lat>`, `<lon>`). Show the diff, commit with a
 > detailed message (title, Why, Result, Checked), and push.
 
 Check: open your repository on GitHub and read the message. `/clear`
 
-## Step 3 · E1 Load a 2 PB virtual store
+## Task 3 · E1 Load a 2 PB virtual store
 
 > Run ~/python-workshop/exercises/01_open_virtual_store.py. In 3 lines: what was downloaded, what was not, and why.
 
 Check: the mean value is plausible for the region. `/clear`
 
-## Step 4 · E2 Inspect: the rainfall plume at your town
+## Task 4 · E2 Inspect: the rainfall plume at your town
 
 > Read ~/python-workshop/exercises/02_read_realized.py. Write scripts/e2_`<town>`_plume.py for `<town>` (`<lat>`,
 > `<lon>`), with `# %%` cell markers, reading only daily lead times (0 to 240 h). Run it. In 3 lines: the dimensions, the latitude order, and the largest
@@ -73,7 +64,7 @@ Check: the mean value is plausible for the region. `/clear`
 
 Check: the cumulative curves never go down, and the spread grows with lead time. Look at `out/` yourself. `/clear`
 
-## Step 5 · E3 Explore: pan vs pencil chunks
+## Task 5 · E3 Explore: pan vs pencil chunks
 
 First fill in the table on the slide with a neighbour (no agent). Then:
 
@@ -82,7 +73,7 @@ First fill in the table on the slide with a neighbour (no agent). Then:
 
 `/clear`
 
-## Step 6 · E4 Visualise: observed extremes
+## Task 6 · E4 Visualise: observed extremes
 
 > Read ~/python-workshop/exercises/04_cmorph_return_periods.py. Write scripts/e4_`<town>`_extremes.py for `<town>`,
 > with `# %%` cell markers. Run it. Give only the 2-, 10- and 50-year 24 h levels and the wettest year. Commit with
@@ -90,7 +81,7 @@ First fill in the table on the slide with a neighbour (no agent). Then:
 
 Check: latitude **ascends** in this store, unlike E2. `/clear`
 
-## Step 7 · E5 Analyse: heavy-rain days
+## Task 7 · E5 Analyse: heavy-rain days
 
 > Read ~/python-workshop/exercises/05_xclim_heavy_rain.py. Write scripts/e5_`<town>`_heavy_days.py with a threshold
 > of `<N>` mm/day, with `# %%` cell markers. Run it. Give only the number of members with a heavy-rain day. Commit
@@ -98,7 +89,7 @@ Check: latitude **ascends** in this store, unlike E2. `/clear`
 
 Check: the daily totals are differences of cumulative `tp`. `/clear`
 
-## Step 8 · E6 Forecast vs local extremes
+## Task 8 · E6 Forecast vs local extremes
 
 > Read ~/python-workshop/exercises/06_forecast_vs_local_extremes.py. Write scripts/e6_`<town>`_exceedance.py for
 > `<town>`, with `# %%` cell markers. Run it. Give the threshold, the members above it per day, and the assumptions
@@ -106,7 +97,7 @@ Check: the daily totals are differences of cumulative `tp`. `/clear`
 
 Check: is the town inside both domains? Are the units both mm in 24 h? `/clear`
 
-## Step 9 · E7 Review and publish
+## Task 9 · E7 Review and publish
 
 > Run git status and ~/python-workshop/exercises/07_review_before_push.py. If it reports no problem, push. Answer in
 > 3 lines.
@@ -117,7 +108,7 @@ Check: your repository on GitHub shows `scripts/`, `NOTES.md` and no `out/`, dat
 
 ## Exploring further, almost free
 
-### Step 10 · Explore a script as a notebook (no agent)
+### Task 10 · Explore a script as a notebook (no agent)
 
 Your scripts have `# %%` cell markers, so jupytext turns them into notebooks without the agent:
 
@@ -134,7 +125,7 @@ uv run jupytext --set-formats ipynb,py:percent scripts/e6_<town>_exceedance.py
 4. Look at `git diff`. It shows a readable script diff, not notebook JSON.
 5. Commit the `.py`. The `.ipynb` is ignored on purpose: its outputs would bloat your history.
 
-### Step 11 · A branch for a "what if" (no agent, or one small prompt)
+### Task 11 · A branch for a "what if" (no agent, or one small prompt)
 
 ```bash
 git switch -c try-threshold-10mm
@@ -149,7 +140,7 @@ git switch main                     # back to the original
 git merge try-threshold-10mm        # keep it ...   or:   git branch -D try-threshold-10mm   to drop it
 ```
 
-### Step 12 · Undo a mistake with `git revert` (no agent)
+### Task 12 · Undo a mistake with `git revert` (no agent)
 
 1. Edit a script so that it forgets the `* 1000` (metres to mm). Run it, see the absurd result, and commit it.
 2. Then:
@@ -161,7 +152,7 @@ git revert HEAD                     # a new commit that undoes the last one: his
 
 Revert keeps the mistake and its correction in the record, unlike deleting.
 
-### Step 13 · Tag your result (no agent)
+### Task 13 · Tag your result (no agent)
 
 ```bash
 git tag -a e6-<town> -m "E6 result for <town>: threshold and exceedance counts"
@@ -170,7 +161,7 @@ git push --tags
 
 On GitHub, *Tags* now lists a citable version of your work.
 
-### Step 14 · E8 stretch (take-home, after the session)
+### Task 14 · E8 stretch (take-home, after the session)
 
 > Read ~/python-workshop/exercises/08_exceedance_probability_map.py. Write scripts/e8_`<region>`_probability.py for
 > `<box or start date>`, with `# %%` cell markers. Run it. Give only the maximum probability per day. Commit with a
@@ -183,7 +174,7 @@ On GitHub, *Tags* now lists a citable version of your work.
 Measured on 20 October 2026 by running the prompts above, each in a fresh conversation, for Kisumu. Figures are a
 share of your credit. Where two steps share a row, the cost of the first showed up together with the second.
 
-| Step | `qwen/qwen3-coder-next` | Agent turns |
+| Task | `qwen/qwen3-coder-next` (Qwen3 Coder Next) | Agent turns |
 |---|---|---|
 | 1-2 E0 orientation, first commit | about 1% | 3 + 5 |
 | 3 E1 virtual store | under 1% | 2 |
@@ -192,7 +183,7 @@ share of your credit. Where two steps share a row, the cost of the first showed 
 | 7 E5 heavy days | about 1% | 9 |
 | 8 E6 exceedance | about 2% | 7 |
 | 9 E7 review and push, 14 E8 stretch | about 1% | 5 + 6 |
-| **Whole workshop (steps 1-9 and 14)** | **about 12%** | |
+| **Whole workshop (tasks 1-9 and 14)** | **about 12%** | |
 
-With `deepseek/deepseek-v4-pro`, steps 1-4 alone used about 80% of the credit, mostly because its requests are
-spread over many providers and so are rarely cached. Use Qwen3 Coder Next unless the instructor says otherwise.
+The workshop model is **Qwen3 Coder Next** (`qwen/qwen3-coder-next`). Other models tested cost up to ten times more
+per step and can use up the credit within a few exercises: do not switch.

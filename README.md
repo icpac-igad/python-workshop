@@ -21,20 +21,74 @@ You work in **your own new repository**, and your agent reads these examples to 
 for your town, dates or question. Every step is committed with a detailed message and pushed to your GitHub,
 which becomes your personal record of the work.
 
-## 1. Download the workshop examples (in your own terminal)
+## Before the session: steps 1-3 (from the welcome email)
+
+These are the same steps as the welcome email *"Hands-on Python data exploration with Claude code and git/github"*.
+Your personal key is **only in that email**: it is never in this repository.
+
+### Step 1 · Create your account on the school JupyterHub
+
+<https://jupyterhub.acmad.amsaf.cloud/>
+
+1. On the login page, click **Sign up** and choose a username and password. You will use them all week.
+2. An administrator approves new accounts, usually within an hour. Until then, logging in will not work.
+3. Once approved, log in and open a terminal: *File → New → Terminal*.
+
+### Step 2 · Install Claude Code and Ori (in that terminal)
+
+Ori is OpenRouter's launcher ([Ori harness](https://openrouter.ai/docs/guides/ori/harness)). It starts Claude Code on
+the workshop model with your key, so you need no Claude subscription.
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc; export PATH="$HOME/.local/bin:$PATH"
+curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://openrouter.ai/labs/ori/install.sh | bash
+claude --version; ori --version
+```
+
+### Step 3 · Put your key in `~/.env`
+
+Open the file with `vi ~/.env`. Press `i`, paste these 3 lines with **your key from the email**, press `Esc`, then
+type `:wq` and press Enter:
+
+```
+OPENROUTER_API_KEY=sk-or-v1-...your key from the email...
+ORI_FORCE_OPENROUTER_API_KEY=1
+ORI_MODEL=qwen/qwen3-coder-next
+```
+
+Then make the file private with `chmod 600 ~/.env`.
+- `ORI_FORCE_OPENROUTER_API_KEY=1` makes Ori use your workshop key instead of asking you to sign in.
+- If your `~/.env` still says `ORI_MODEL=deepseek/deepseek-v4-pro` from an earlier email, change it to
+  `qwen/qwen3-coder-next`. The `--model` option below also takes precedence over it.
+
+---
+
+> ## ▶ THE WORKSHOP STARTS HERE: Step 4 · Start Claude Code with Ori
+>
+> ```bash
+> set -a; source ~/.env; set +a
+> cd ~ && ori claude --model qwen/qwen3-coder-next
+> ```
+>
+> - Type `/status`. The model line must show **`qwen/qwen3-coder-next`**, not a Claude model.
+> - Type `say hello`. It should answer. Then type `/exit`.
+> - If Ori asks you to sign in, `~/.env` was not loaded: run the `set -a ...` line again.
+> - If you see `ori: command not found`, run the `export PATH=...` line from Step 2.
+
+---
+
+### Step 5 · Download the workshop examples
 
 ```bash
 cd ~
 git clone -b 2026-10 --single-branch https://github.com/icpac-igad/python-workshop.git
-~/python-workshop/setup-nosudo.sh --skip-env      # installs uv, gh and claude; no sudo
+~/python-workshop/setup-nosudo.sh --skip-env      # installs uv and gh (and Claude Code if missing); no sudo
 ```
-
-Claude Code, Ori and `~/.env` were set up from the welcome email. If not, see the email, or install Ori with
-`curl -fsSL https://openrouter.ai/labs/ori/install.sh | bash` once `~/.local/bin` is on your `PATH`.
 
 You never commit or push to `~/python-workshop`.
 
-## 2. Create your own repository (E0)
+### Step 6 · Create your own repository (E0)
 
 Follow **[GITHUB_SETUP.md](GITHUB_SETUP.md)**. It covers:
 - the basic ideas of git and GitHub;
@@ -42,26 +96,26 @@ Follow **[GITHUB_SETUP.md](GITHUB_SETUP.md)**. It covers:
 - creating a **fine-grained token** limited to that one repository, and storing it with `gh auth login` in your own terminal;
 - cloning your repository, copying in only the agent rules and environment files, and making your first commit and push.
 
-Then start the agent **from your repository**, never from `~/python-workshop`:
+### Step 7 · Start the agent from your repository, for every exercise
+
+Start it from your own repository, never from `~/python-workshop`:
 
 ```bash
 cd ~/ai-summer-school-2026
-set -a; source ~/.env; set +a                    # your key and model, set up from the welcome email
+set -a; source ~/.env; set +a
 ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
 ```
 
-- `ori` is OpenRouter's launcher ([Ori harness](https://openrouter.ai/docs/guides/ori/harness)). It runs Claude Code on
-  the chosen OpenRouter model with your workshop key, so you need no Claude subscription.
 - `--add-dir ~/python-workshop` lets the agent **read** the examples. The project rules forbid it to edit them.
-- In the agent, `/status` must show `qwen/qwen3-coder-next`. In a cost test, the whole workshop used about 12% of
-  a participant's credit with it, against about 80% for steps 1-4 alone with `deepseek/deepseek-v4-pro`.
-- Your personal OpenRouter key arrived by email, with the 3 lines for `~/.env`: a private file (`chmod 600`) in your
-  home folder, outside every repository.
+- **Model: `qwen/qwen3-coder-next` (Qwen3 Coder Next).** In a cost test on 20 October 2026, the whole workshop
+  used about 12% of a participant's credit with it. Do not switch to other models: they can use up the credit
+  within a few exercises.
 - **Never paste a key or token into the agent's chat, a script, or a commit.**
 - Each OpenRouter key carries a small workshop credit and is switched off after the school. Your GitHub token
   expires on 31 October. Keep prompts short, and use `/clear` between topics.
+- Every prompt, step by step: **[workshop-prompts.md](workshop-prompts.md)**.
 
-## 3. How every exercise works: ask, look, check and commit
+## How every exercise works: ask, look, check and commit
 
 1. **Ask**: give the agent an instruction in plain language, naming the example that inspires it.
 2. **Look**: read the output and the figure in `out/` yourself.
@@ -107,7 +161,7 @@ uv run jupytext --sync scripts/e6_<town>_exceedance.ipynb
 Commit the `.py`, not the `.ipynb`: notebooks are in `.gitignore`, because their outputs bloat diffs and history.
 Never ask the agent to read a notebook or a plot image. Look yourself, and tell it what you see.
 
-## 4. Exercises
+## Exercises
 
 | Stage | Clock (min) | Example for inspiration | What you ask the agent to build in your repository |
 |---|---|---|---|
