@@ -62,6 +62,9 @@ Then make the file private with `chmod 600 ~/.env`.
 - If your `~/.env` still says `ORI_MODEL=deepseek/deepseek-v4-pro` from an earlier email, change it to
   `qwen/qwen3-coder-next`. The `--model` option below also takes precedence over it.
 
+**Check steps 1-3 from a notebook:** `setup_demo.py` runs each check in a cell and never prints your key. Open it in
+JupyterLab as a notebook: *right-click → Open With → Notebook*, or `uv run jupytext --to ipynb setup_demo.py`.
+
 ---
 
 > ## ▶ THE WORKSHOP STARTS HERE: Step 4 · Start Claude Code with Ori
@@ -179,7 +182,7 @@ git clone --depth 1 https://github.com/icpac-igad/ea-aifs.git /tmp/ea-aifs
 uvx pygount --format=summary /tmp/ea-aifs         # about 228 files and 20,000 lines of Python code (October 2026)
 ```
 
-The workshop examples themselves are 8 Python files and 467 lines of code. The slides use `cloc` for the same
+The workshop examples themselves are 9 Python files and 467 lines of code. The slides use `cloc` for the same
 count. Without sudo, cloc is a single Perl script: download `cloc-2.10.pl` from
 <https://github.com/AlDanial/cloc/releases> and run `perl cloc-2.10.pl .`
 
