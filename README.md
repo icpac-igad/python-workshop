@@ -116,7 +116,8 @@ ori claude --model qwen/qwen3-coder-next --add-dir ~/python-workshop
 - **Never paste a key or token into the agent's chat, a script, or a commit.**
 - Each OpenRouter key carries a small workshop credit and is switched off after the school. Your GitHub token
   expires on 31 October. Keep prompts short, and use `/clear` between topics.
-- Every prompt, step by step: **[workshop-prompts.md](workshop-prompts.md)**.
+- The prompts from the slides, exercise by exercise: **[EXERCISES.md](EXERCISES.md)**.
+- Shorter, budget-tested prompts, step by step: **[workshop-prompts.md](workshop-prompts.md)**.
 
 ## How every exercise works: ask, look, check and commit
 
@@ -251,6 +252,7 @@ Both stores use *pan* chunks, with one whole map per chunk. Maps are cheap to re
   pyproject.toml, uv.lock Python environment (copy into your repository); environment.yml for conda
   GITHUB_SETUP.md         your own repository and token, step by step
   workshop-prompts.md     every step's prompt in order, written to keep the cost low
+  EXERCISES.md            the prompts from the slides, E0-E8, with what to look for and check
   setup-nosudo.sh         installs uv, gh and Claude Code
 
 ~/ai-summer-school-2026/ (your repository: origin = github.com/<you>/ai-summer-school-2026)
