@@ -161,6 +161,28 @@ uv run jupytext --sync scripts/e6_<town>_exceedance.ipynb
 Commit the `.py`, not the `.ipynb`: notebooks are in `.gitignore`, because their outputs bloat diffs and history.
 Never ask the agent to read a notebook or a plot image. Look yourself, and tell it what you see.
 
+### Measure your work: files and lines of code (no agent, no sudo)
+
+`pygount` counts files and lines of code per language. `uvx` runs it without installing anything and without sudo.
+It skips hidden folders such as `.venv` and `.git`.
+
+```bash
+cd ~/ai-summer-school-2026
+uvx pygount --format=summary .                    # your repository: languages, files, code and comment lines
+git log --oneline | wc -l                         # and how many commits record the work
+```
+
+To compare with the case study on the slides, an operational AI forecasting pipeline written by a coding agent:
+
+```bash
+git clone --depth 1 https://github.com/icpac-igad/ea-aifs.git /tmp/ea-aifs
+uvx pygount --format=summary /tmp/ea-aifs         # about 228 files and 20,000 lines of Python code (October 2026)
+```
+
+The workshop examples themselves are 8 Python files and 467 lines of code. The slides use `cloc` for the same
+count. Without sudo, cloc is a single Perl script: download `cloc-2.10.pl` from
+<https://github.com/AlDanial/cloc/releases> and run `perl cloc-2.10.pl .`
+
 ## Exercises
 
 | Stage | Clock (min) | Example for inspiration | What you ask the agent to build in your repository |

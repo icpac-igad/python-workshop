@@ -167,6 +167,23 @@ On GitHub, *Tags* now lists a citable version of your work.
 > `<box or start date>`, with `# %%` cell markers. Run it. Give only the maximum probability per day. Commit with a
 > detailed message.
 
+### Task 15 · Measure your work (no agent, no sudo)
+
+```bash
+cd ~/ai-summer-school-2026
+uvx pygount --format=summary .        # files and lines of code per language
+git log --oneline | wc -l             # number of commits
+```
+
+Compare with the case study, the agent-written forecasting pipeline on the slides:
+
+```bash
+git clone --depth 1 https://github.com/icpac-igad/ea-aifs.git /tmp/ea-aifs
+uvx pygount --format=summary /tmp/ea-aifs
+```
+
+Write the numbers in `NOTES.md` and commit them. How many lines did you type yourself?
+
 ---
 
 ## What it costs
